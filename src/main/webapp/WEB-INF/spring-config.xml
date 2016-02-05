@@ -39,29 +39,29 @@
         <property name="initialSize" value="${database.initialSize}"/>
     </bean>
 
-    <!--&lt;!&ndash; 配置mybatis的SqlSessionFactoryBean &ndash;&gt;-->
-    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-        <!--<property name="configLocation" value="classpath*:mybatis-config.xml"/>-->
-    <!--</bean>-->
-    <!--&lt;!&ndash; 配置mybatis数据处理的方式，共四种方式，这里采用MapperScannerConfigurer方式 &ndash;&gt;-->
-    <!--&lt;!&ndash;-->
-        <!--SqlSessionTemplate  这个需要写配置文件，在实现类中注入sqlsession，再使用sqlsession,是细颗粒控制-->
-        <!--SqlSessionDaoSupport   这个只需要在实现类中继承特殊类就可以使用sqlsession-->
-        <!--MapperFactoryBean  这个要写配置文件，把对应的所有接口在配置文件中引用即可，无需写实现类-->
-        <!--MapperScannerConfigurer  这个要写配置文件，只要给出接口所在的包即可，会自动把包中的接口引入，无需写实现类-->
-     <!--&ndash;&gt;-->
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="com.frame.dao"/>-->
-    <!--</bean>-->
+    <!-- 配置mybatis的SqlSessionFactoryBean -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="WEB-INF/mybatis-config.xml"/>
+    </bean>
+    <!-- 配置mybatis数据处理的方式，共四种方式，这里采用MapperScannerConfigurer方式 -->
+    <!--
+        SqlSessionTemplate  这个需要写配置文件，在实现类中注入sqlsession，再使用sqlsession,是细颗粒控制
+        SqlSessionDaoSupport   这个只需要在实现类中继承特殊类就可以使用sqlsession
+        MapperFactoryBean  这个要写配置文件，把对应的所有接口在配置文件中引用即可，无需写实现类
+        MapperScannerConfigurer  这个要写配置文件，只要给出接口所在的包即可，会自动把包中的接口引入，无需写实现类
+     -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com/sdcxv/demo/dao"/>
+    </bean>
 
-    <!--&lt;!&ndash; 事务配置 &ndash;&gt;-->
-    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
-        <!--<property name="dataSource" ref="dataSource"/>-->
-    <!--</bean>-->
+    <!-- 事务配置 -->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
 
-    <!--&lt;!&ndash; jdbc初始化数据库 &ndash;&gt;-->
-    <!--<jdbc:initialize-database data-source="dataSource" ignore-failures="NONE" enabled="${jdbc.initializeDatabase}">-->
-        <!--<jdbc:script encoding="utf-8" location="classpath*:initialization.sql"/>-->
-    <!--</jdbc:initialize-database>-->
+    <!-- jdbc初始化数据库 -->
+    <jdbc:initialize-database data-source="dataSource" ignore-failures="NONE" enabled="${jdbc.initializeDatabase}">
+        <jdbc:script encoding="utf-8" location="classpath*:initialization.sql"/>
+    </jdbc:initialize-database>
 </beans>

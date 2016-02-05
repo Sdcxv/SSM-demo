@@ -16,7 +16,6 @@
         <action name="hello" class="com.sdcxv.demo.action.HelloAction">
             <result name="success">/pages/hello.jsp</result>
         </action>
-        <action name="demo" class="demoAction">
-        </action>
+        <action name="demo" class="com.sdcxv.demo.action.demoAction"/>
     </package>
 </struts>
